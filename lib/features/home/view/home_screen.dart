@@ -24,29 +24,31 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         surfaceTintColor: Colors.transparent,
       ),
-      body: ListView(
-        physics: const ClampingScrollPhysics(),
-        padding: AppConsts.defaultPadding,
-        children: [
-          const CitySearchWidget(),
-          const VerticalSpacing(40),
-          BlocBuilder<HomeCubit, HomeStates>(
-            builder: (context, state) {
-              if (state is HomeErrorState) {
-                return FailedWidget(error: state.error);
-              } else if (state is HomeSuccessState || state is HomeLoadingState) {
-                return Skeletonizer(
-                  enabled: state is HomeLoadingState,
-                  child: CityWeatherWidget(
-                    cityWeather: state is HomeLoadingState ? Fakers.cityWeatherDTO : (state as HomeSuccessState).city,
-                  ),
-                );
-              } else {
-                return const WelcomeWidget();
-              }
-            },
-          ),
-        ],
+      body: SafeArea(
+        child: ListView(
+          physics: const ClampingScrollPhysics(),
+          padding: AppConsts.defaultPadding,
+          children: [
+            const CitySearchWidget(),
+            const VerticalSpacing(40),
+            BlocBuilder<HomeCubit, HomeStates>(
+              builder: (context, state) {
+                if (state is HomeErrorState) {
+                  return FailedWidget(error: state.error);
+                } else if (state is HomeSuccessState || state is HomeLoadingState) {
+                  return Skeletonizer(
+                    enabled: state is HomeLoadingState,
+                    child: CityWeatherWidget(
+                      cityWeather: state is HomeLoadingState ? Fakers.cityWeatherDTO : (state as HomeSuccessState).city,
+                    ),
+                  );
+                } else {
+                  return const WelcomeWidget();
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

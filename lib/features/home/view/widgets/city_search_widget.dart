@@ -34,7 +34,7 @@ class _CitySearchWidgetState extends State<CitySearchWidget> {
             spacing: 12,
             children: [
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Form(
                   key: _formKey,
                   child: MainTextField(
@@ -50,9 +50,10 @@ class _CitySearchWidgetState extends State<CitySearchWidget> {
                 child: MainButton(
                   text: 'check',
                   isLoading: state is HomeLoadingState,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   ontap: () async {
                     if (_formKey.currentState?.validate() != true) return;
-                    // await context.read<HomeCubit>().getCityWeather(searchController.text);
+                    await context.read<HomeCubit>().getCityWeather(searchController.text);
                   },
                 ),
               ),

@@ -13,7 +13,7 @@ class CityWeatherWidget extends StatelessWidget {
   final CityWeatherDTO cityWeather;
   @override
   Widget build(BuildContext context) {
-    final icontitleValueList = [
+    final iconTitleValueList = [
       (Assets.assetsSvgHumidity, "Humidity", "${cityWeather.humidity}%"),
       (Assets.assetsSvgTemp, "Temperature", "${cityWeather.temperature}°C"),
       (Assets.assetsSvgWind, "Wind", "${cityWeather.windSpeed} m/s"),
@@ -48,11 +48,11 @@ class CityWeatherWidget extends StatelessWidget {
               return ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemCount: icontitleValueList.length,
+                itemCount: iconTitleValueList.length,
                 separatorBuilder:
                     (context, index) => const VerticalDivider(color: Colors.black26, indent: 50, endIndent: 10, width: 1),
                 itemBuilder: (context, index) {
-                  final item = icontitleValueList[index];
+                  final item = iconTitleValueList[index];
                   return SizedBox(
                     width: (constrins.maxWidth - 2) / 3,
                     child: Column(
