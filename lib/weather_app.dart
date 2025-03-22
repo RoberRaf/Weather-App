@@ -10,18 +10,15 @@ class WeatherApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-      child: MaterialApp(
-        title: "Weather App",
-        theme: mainTheme,
-        debugShowCheckedModeBanner: false,
-        home: BlocProvider(create: (context) => di<HomeCubit>(), child: const HomeScreen()),
-        builder: (context, child) {
-          return child!;
-          // return Stack(children: [child!, NoInternetWidget()])!;
-        },
-      ),
+    return MaterialApp(
+      title: "Weather App",
+      theme: mainTheme,
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(create: (context) => di<HomeCubit>(), child: const HomeScreen()),
+      builder: (context, child) {
+        return child!;
+        // return Stack(children: [child!, NoInternetWidget()])!;
+      },
     );
   }
 }

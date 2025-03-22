@@ -1,5 +1,0 @@
-1- .env
-2- unit test:
-    - api
-    - bloc
-3-domain layer ?

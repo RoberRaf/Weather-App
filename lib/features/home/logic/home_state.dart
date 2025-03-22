@@ -3,16 +3,16 @@ import 'package:weather_app/features/home/data/models/city_weather_dto.dart';
 
 abstract class HomeStates {}
 
-class HomeInitial extends HomeStates {}
+class HomeInitialState extends HomeStates {}
 
-class HomeLoading extends HomeStates {}
+class HomeLoadingState extends HomeStates {}
 
-class HomeLoaded extends HomeStates {
+class HomeSuccessState extends HomeStates {
   final CityWeatherDTO city;
-  HomeLoaded(this.city);
+  HomeSuccessState(this.city);
 }
 
-class HomeError extends HomeStates {
+class HomeErrorState extends HomeStates {
   final ApiErrorModel error;
-  HomeError(this.error);
+  HomeErrorState(this.error);
 }

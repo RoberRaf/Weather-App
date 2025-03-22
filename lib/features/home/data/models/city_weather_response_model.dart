@@ -34,7 +34,7 @@ class CityWeatherResponseModel {
     return CityWeatherDTO(
       cityName: name,
       temperature: main?.temp,
-      weatherList: weather,
+      weatherList: weather == null ? null : List.of(weather!),
       windSpeed: wind?.speed,
       humidity: main?.humidity?.toDouble(),
     );
@@ -69,8 +69,8 @@ class Coord {
   Coord({this.lon, this.lat});
 
   Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
+    lon = double.tryParse(json['lon'].toString());
+    lat = double.tryParse(json['lat'].toString());
   }
 }
 
@@ -124,8 +124,8 @@ class Main {
 }
 
 class WindModel {
-  double? speed;
-  int? deg;
+  num? speed;
+  num? deg;
 
   WindModel({this.speed, this.deg});
 

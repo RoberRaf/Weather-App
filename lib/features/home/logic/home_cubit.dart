@@ -10,15 +10,15 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   final HomeRepo _homeRepo;
-  HomeCubit(this._homeRepo) : super(HomeInitial());
+  HomeCubit(this._homeRepo) : super(HomeInitialState());
 
   Future<void> getCityWeather(String cityName) async {
-    emit(HomeLoading());
+    emit(HomeLoadingState());
     final response = await _homeRepo.getCityWeather(cityName);
     if (response.city != null) {
-      emit(HomeLoaded(response.city!.toDTO()));
+      emit(HomeSuccessState(response.city!.toDTO()));
       return;
     }
-    emit(HomeError(response.error!));
+    emit(HomeErrorState(response.error!));
   }
 }

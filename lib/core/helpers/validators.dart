@@ -1,7 +1,3 @@
-class AppRegex {
-  static final RegExp emailValidatorRegExp = RegExp(r"^01[0125][0-9]{8}$");
-}
-
 class Validators {
   static String? notEmpty(String? value, {String? msg}) {
     if (value == null || value.trim().isEmpty) {
@@ -9,4 +5,19 @@ class Validators {
     }
     return null;
   }
+
+  static String? moreThanNum(String? value, {int? num, String? msg}) {
+    if (value == null || value.length < (num ?? 3)) {
+      return msg ?? "Enter $num characters or more";
+    }
+    return null;
+  }
+
+  static String? validCityName(String? v) {
+    return Validators.notEmpty(v) ?? Validators.moreThanNum(v, num: 3);
+  }
+}
+
+class AppRegex {
+  static final RegExp isArabicWord = RegExp(r"^[\u0621-\u064a-\ ]+$");
 }
